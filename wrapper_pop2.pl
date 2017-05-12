@@ -27,7 +27,7 @@ my $prefix = (split "/\./", $infile)[0];
 system "perl ${progDir}/snp-frequency-diff.pl --input $infile --output-prefix ${prefix} --min-count $mincount --min-coverage $mincov --max-coverage $maxcov";
 
 #convert sync file to genewise sync
-system "perl /mnt/PepPop_export/PepPrograms/popoolation2_1201/create-genewise-sync.pl --input $infile --gtf $gtf --output ${prefix}_genes.sync";
+system "perl ${progDir}/create-genewise-sync.pl --input $infile --gtf $gtf --output ${prefix}_genes.sync";
 
 #calculate genewise Fst
 system "perl ${progDir}/fst-sliding.pl --min-count $mincount --min-coverage $mincov --max-coverage $maxcov --pool-size $pool --window-size 1000000 --step-size 1000000  --input ${prefix}_genes.sync --output ${prefix}_genewise.fst";
