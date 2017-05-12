@@ -21,7 +21,7 @@ my $pool = 10000;
 
 #get patient name
 my $prefix = (split /\./, $infile)[0];
-
+print STDERR "processing ${prefix}...\n";
 
 #calculate allele frequencies
 system "perl ${progDir}/snp-frequency-diff.pl --input $infile --output-prefix ${prefix} --min-count $mincount --min-coverage $mincov --max-coverage $maxcov";
