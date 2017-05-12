@@ -20,7 +20,7 @@ my $maxcov = 350;
 my $pool = 10000;
 
 #get patient name
-my $prefix = (split "/\./", $infile)[0];
+my $prefix = (split /\./, $infile)[0];
 
 
 #calculate allele frequencies
