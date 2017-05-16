@@ -1,9 +1,13 @@
 #!/usr/bin/bash
-#testing popoolation2 scripts to make the sync file
-#ERR867546 (patient 11, culture) has average depth of 314
-#ERR867538 (patient 11, sputum) has average depth of 146
 
+#This is a script to fun the full Fst calculation. 
 
-sam mpileup -B -q 30 -Q 20 ../metgen_filtered/ERR867546/ERR867546_classSeqs.bam ../metgen_filtered/ERR867538/ERR867538_classSeqs.bam 
+#make dir
+mkdir /home/jdabney/projects/sputum/data/Fst
+cd ~/projects/sputum/data/Fst
 
-sam mpileup -B -q 30 -Q 20 ../metgen_filtered/ERR867546/ERR867546_classSeqs.bam ../metgen_filtered/ERR867538/ERR867538_classSeqs.bam 
+#Make sync file from bams.
+~/projects/sputum/scripts/Fst/make_pop2sync.pl
+
+#calculate Fst
+find -maxdepth 1 -name "*.sync" | xargs -n 1 basename | xargs -n 1 -P 12 -I{} ~/projects/sputum/scripts/fst_calculation/wrapper_pop2.pl {}
